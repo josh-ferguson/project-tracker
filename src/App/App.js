@@ -14,13 +14,26 @@ import './App.css';
 
 
 function App() {
+  const [projects, setProjects] = useState([]);
+
+  const addProject = (projectName, description) => {
+    setProjects([
+      {
+        projectName: projectName,
+        description: description,
+        features: []
+      },
+      ...projects
+    ])
+  }
+
   return (
     <Router>
       <div className="App">
         <nav>
           <ul>
             <li>
-              <NavLink to="/allProjects" exact>Project Tracker</NavLink>
+              <NavLink className={"logo"} to="/allProjects" exact>Project Tracker</NavLink>
             </li>
           </ul>
         </nav>
@@ -30,7 +43,7 @@ function App() {
             <Redirect to="/allProjects" />
           </Route>
           <Route path={"/allProjects"}>
-            <AllProjects />
+            <AllProjects addProject={addProject} projects={projects}/>
           </Route>
           <Route path={"/projectFeatures"}>
             <ProjectFeatures />

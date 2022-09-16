@@ -1,0 +1,31 @@
+
+.projectbox-container{
+    width: 800px;
+    height: auto;
+    background: white;
+    overflow: hidden;
+    /* border-radius: 8px; */
+    margin: 1px auto;
+    padding: 0.5rem;
+    display: flex;
+    align-items: center;
+}
+
+.projectbox-container .project-title{
+    color: black;
+    font-size: 1.5rem;
+    text-decoration: underline;
+    padding-bottom: 0.6rem;
+}
+
+.projectbox-container .project-description{
+    color: black;
+}
+
+.tick {
+    margin-right: 20px;
+}
+
+.remove {
+    margin-left: auto;
+}
