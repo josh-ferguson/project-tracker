@@ -1,32 +1,43 @@
 import React from "react";
+import { NavLink } from 'react-router-dom';
 
 import "./Project.css";
+import 'font-awesome/css/font-awesome.min.css';
 
-export const Project = ({value}) => {
+
+export const Project = ({value, removeProject}) => {
     const valueArray = Object.values(value);
-    console.log(valueArray)
+
+    const handleRemoveClick = () => {
+        removeProject(valueArray[0]);
+    }
 
     return (
         <div className="projectbox-container">
-            <p className="tick">Tick</p>
+            <i className="fa fa-check fa-2x"></i>
             <div className="project-container">
                 {valueArray.map((val, index) => {
                     if (index === 0) {
                         return (
-                        <p className="project-title" key={index}>
-                            {val}
-                        </p>
+                            <NavLink
+                            to={`/projectFeatures/${val}`}
+                            key={index}
+                            >
+                            <p className="project-title" key={index}>
+                                {val}
+                            </p>
+                            </NavLink>
                         );
                     } else {
                         return (
-                        <p className="project-description" key={index}>
-                            {val}
-                        </p>
+                            <p className="project-description" key={index}>
+                                {val}
+                            </p>
                         );
                     }
                 })}
             </div>
-            <p className="remove">remove</p>
+            <p className="remove" onClick={handleRemoveClick}>remove</p>
         </div>
             
 

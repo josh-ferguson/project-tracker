@@ -10,6 +10,7 @@ export const AllProjects = (props) => {
 
     const projectList = props.projects;
     const addProject = props.addProject;
+    const removeProject = props.removeProject;
 
     useEffect(() => {
         if(projectList.filter(project => project.projectName === projectName).length > 0){
@@ -29,7 +30,7 @@ export const AllProjects = (props) => {
         } else {
             alert("Project already exists, try a different name.")
         }
-      };
+    };
 
     return (
         <div>
@@ -43,7 +44,7 @@ export const AllProjects = (props) => {
                 />
             </section>
             <section className="projectList">
-                <ProjectList projectList={projectList}/>
+                <ProjectList projectList={projectList} removeProject={removeProject}/>
             </section>
         </div>
     )

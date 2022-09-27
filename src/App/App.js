@@ -21,10 +21,15 @@ function App() {
       {
         projectName: projectName,
         description: description,
-        features: []
+        features: [],
+        completed: false
       },
       ...projects
     ])
+  }
+
+  const removeProject = (projectName) => {
+    setProjects(projects.filter(project => project.projectName !== projectName));
   }
 
   return (
@@ -42,11 +47,18 @@ function App() {
           <Route exact path={"/"}>
             <Redirect to="/allProjects" />
           </Route>
-          <Route path={"/allProjects"}>
-            <AllProjects addProject={addProject} projects={projects}/>
+          <Route exact path={"/projectFeatures"}>
+            <Redirect to="/allProjects" />
           </Route>
-          <Route path={"/projectFeatures"}>
-            <ProjectFeatures />
+          <Route path={"/allProjects"}>
+            <AllProjects 
+              projects={projects} 
+              addProject={addProject} 
+              removeProject={removeProject}
+            />
+          </Route>
+          <Route path={"/projectFeatures/:projectNameParams"}>
+            <ProjectFeatures projects={projects} />
           </Route>
         </Switch>
         </main>
