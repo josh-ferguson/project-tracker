@@ -1,0 +1,18 @@
+.editModal {
+    position: absolute;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.8);
+    z-index: 3;
+    display: flex;
+    justify-content: center;
+}
+
+.editModalContainer{
+    margin-top: 10rem;
+    background-color: white;
+    border-radius: 1rem;
+    height: 10rem;
+    width: 20rem;
+}

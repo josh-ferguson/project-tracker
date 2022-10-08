@@ -4,7 +4,7 @@ import { useHistory } from 'react-router-dom';
 import "./ProjectInfo.css"
 import 'font-awesome/css/font-awesome.min.css';
 
-export const ProjectInfo = ({project}) => {
+export const ProjectInfo = ({projectName, projectDescription}) => {
     let history = useHistory(); 
 
     return (
@@ -15,8 +15,8 @@ export const ProjectInfo = ({project}) => {
             {/* ADD classname completed when completed */}
             <div className="projInfo">
                 <p className="editBtn"><span>(edit)</span></p>
-                <h2>{project.projectName}</h2>
-                <p>{project.description}</p>
+                <h2>{projectName}</h2>
+                <p>{projectDescription}</p>
                 <button>Complete</button>
                 <button>Delete</button>
             </div>
