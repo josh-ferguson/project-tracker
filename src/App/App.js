@@ -32,12 +32,12 @@ function App() {
     setProjects(projects.filter(project => project.projectName !== projectName));
   }
 
-  const editName = (prevName, newName) => {
+  const editInfo = (prevName, newName, newDesc) => {
 
     setProjects(current =>
       current.map(obj => {
         if (obj.projectName === prevName) {
-          return {...obj, projectName: newName};
+          return {...obj, projectName: newName, description: newDesc};
         }
 
         return obj;
@@ -74,7 +74,7 @@ function App() {
           <Route path={"/projectFeatures/:projectNameParams"}>
             <ProjectFeatures 
               projects={projects} 
-              editName={editName}
+              editInfo={editInfo}
             />
           </Route>
         </Switch>
