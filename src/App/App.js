@@ -32,6 +32,18 @@ function App() {
     setProjects(projects.filter(project => project.projectName !== projectName));
   }
 
+  const projectCompleted = (projectName) => {
+    setProjects(current =>
+      current.map(obj => {
+        if (obj.projectName === projectName) {
+          return {...obj, completed: !obj.completed};
+        }
+
+        return obj;
+      }),
+    );
+  }
+
   const editInfo = (prevName, newName, newDesc) => {
 
     setProjects(current =>
@@ -75,6 +87,8 @@ function App() {
             <ProjectFeatures 
               projects={projects} 
               editInfo={editInfo}
+              projectCompleted={projectCompleted}
+              removeProject={removeProject}
             />
           </Route>
         </Switch>

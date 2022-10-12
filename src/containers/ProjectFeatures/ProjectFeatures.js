@@ -4,7 +4,7 @@ import { EditModal } from "../../components/EditModal/EditModal";
 import { ProjectInfo } from "../../components/ProjectInfo/ProjectInfo";
 
 
-export const ProjectFeatures = ({projects, editInfo}) => {
+export const ProjectFeatures = ({projects, editInfo, projectCompleted, removeProject}) => {
     const { projectNameParams } = useParams();
     const history = useHistory();
 
@@ -13,15 +13,21 @@ export const ProjectFeatures = ({projects, editInfo}) => {
     const [modalActive, setModalActive] = useState(false);
     const [projectName, setProjectName] = useState(project.projectName);
     const [description, setDescription] = useState(project.description);
+    const [isCompleted, setIsCompleted] = useState("")
 
     useEffect(() => {
-        setProject(projects[projects.findIndex(project => project.projectName === projectNameParams)]);
-        setProjectName(project.projectName);
-        setDescription(project.description);
-        console.log("test");
-    }, [project])
+        try {
+            setProject(projects[projects.findIndex(project => project.projectName === projectNameParams)]);
+            setProjectName(project.projectName);
+            setDescription(project.description);
+            setIsCompleted(projects[projects.findIndex(project => project.projectName === projectNameParams)].completed);
+        } catch (error) {
+            history.push("/pageNotFound")
+            // ADD page not found
+        }
+    }, [project, projects, projectNameParams])
 
-    const handleEditBtn = (e) => {
+    const handleEditBtn = () => {
         setModalActive(true);
     }
 
@@ -38,9 +44,19 @@ export const ProjectFeatures = ({projects, editInfo}) => {
         editInfo(project.projectName, projectName, description)
 
         let newPath = `/projectFeatures/${projectName}`
-        console.log(newPath)
         history.push(newPath);
         setModalActive(false);
+    }
+
+    const handleComplete = () => {
+        projectCompleted(projectName);
+        setIsCompleted(projects[projects.findIndex(project => project.projectName === projectName)].completed)
+    }
+
+    const handleRemoveClick = () => {
+        removeProject(projectName);
+        history.push("/allProjects")
+        // ADD confirmation Modal
     }
     
     return (
@@ -50,6 +66,9 @@ export const ProjectFeatures = ({projects, editInfo}) => {
                     projectName={projectName} 
                     projectDescription={description}
                     handleEditBtn={handleEditBtn}
+                    handleComplete={handleComplete}
+                    isCompleted={isCompleted}
+                    handleRemoveClick={handleRemoveClick}
                 />
                 {modalActive ? <EditModal 
                     projectName={projectName} 

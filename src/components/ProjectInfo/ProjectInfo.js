@@ -4,7 +4,16 @@ import { useHistory } from 'react-router-dom';
 import "./ProjectInfo.css"
 import 'font-awesome/css/font-awesome.min.css';
 
-export const ProjectInfo = ({projectName, projectDescription, handleEditBtn}) => {
+export const ProjectInfo = (
+    {
+        projectName, 
+        projectDescription, 
+        handleEditBtn, 
+        handleComplete, 
+        isCompleted,
+        handleRemoveClick
+    }) => {
+
     let history = useHistory();
 
         return (
@@ -12,13 +21,12 @@ export const ProjectInfo = ({projectName, projectDescription, handleEditBtn}) =>
             <div className="backBtn">
                 <i className="fa fa-arrow-left fa-3x" onClick={() => history.push("/allProjects")}></i>
             </div>
-            {/* ADD classname completed when completed */}
-            <div className="projInfo">
+            <div className={isCompleted ? "projInfo completed" : "projInfo"}>
                 <p className="editBtn" onClick={handleEditBtn}><span>(edit)</span></p>
                 <h2>{projectName}</h2>
                 <p>{projectDescription}</p>
-                <button>Complete</button>
-                <button>Delete</button>
+                <button className={isCompleted ? "btnComplete completedBtn" : "btnComplete"} onClick={handleComplete}>{isCompleted ? "Completed" : "Complete"}</button>
+                <button className="btnDelete" onClick={handleRemoveClick}>Delete</button>
             </div>
         </div>
     );

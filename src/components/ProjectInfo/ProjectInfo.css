@@ -38,10 +38,32 @@
     font-size: 2rem;
 }
 
+.projInfo p:nth-child(3){
+    margin-bottom: 1rem;
+}
+
 .completed{
     text-decoration: line-through;
     background-color: rgba(0, 128, 0, 0.3);
 }
 
+.completedBtn {
+    border-radius: 1rem;
+}
 
+.projectInfoContainer button{
+    padding: 2px 5px;
+    margin-right: 5px;
+    cursor: pointer;
+    border: 1px solid black;
+    font-weight: bold;
+    font-size: 1rem;
+}
 
+.projInfo .btnComplete{
+    background-color: green;
+}
+
+.projInfo .btnDelete{
+    background-color: red;
+}

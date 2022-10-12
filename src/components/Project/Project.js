@@ -7,6 +7,7 @@ import 'font-awesome/css/font-awesome.min.css';
 
 export const Project = ({value, removeProject}) => {
     const valueArray = Object.values(value);
+    console.log(valueArray);
 
     const handleRemoveClick = () => {
         removeProject(valueArray[0]);
@@ -14,7 +15,7 @@ export const Project = ({value, removeProject}) => {
 
     return (
         <div className="projectbox-container">
-            <i className="fa fa-check fa-2x"></i>
+            {valueArray[3] ? <i className="fa fa-check fa-2x"></i> : null}
             <div className="project-container">
                 {valueArray.map((val, index) => {
                     if (index === 0) {
