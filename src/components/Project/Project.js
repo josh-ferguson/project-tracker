@@ -7,7 +7,6 @@ import 'font-awesome/css/font-awesome.min.css';
 
 export const Project = ({value, removeProject}) => {
     const valueArray = Object.values(value);
-    console.log(valueArray);
 
     const handleRemoveClick = () => {
         if (window.confirm("Are you sure you want to delete the project?") === true) {

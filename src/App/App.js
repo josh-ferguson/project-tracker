@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   BrowserRouter as Router,
   Switch,
@@ -16,6 +16,17 @@ import './App.css';
 
 function App() {
   const [projects, setProjects] = useState([]);
+
+  useEffect(() => {
+    const items = JSON.parse(localStorage.getItem('projects'));
+    if (items.length > 0) {
+      setProjects(items);
+    }
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem('projects', JSON.stringify(projects));
+  }, [projects]);
 
   const addProject = (projectName, description) => {
     setProjects([
