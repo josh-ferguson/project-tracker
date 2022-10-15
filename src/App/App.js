@@ -8,6 +8,7 @@ import {
 } from "react-router-dom";
 
 import { AllProjects } from "../containers/AllProjects/AllProjects";
+import { PageNotFound } from "../containers/PageNotFound/PageNotFound";
 import { ProjectFeatures } from "../containers/ProjectFeatures/ProjectFeatures";
 
 import './App.css';
@@ -90,6 +91,9 @@ function App() {
               projectCompleted={projectCompleted}
               removeProject={removeProject}
             />
+          </Route>
+          <Route path={"/pageNotFound"}>
+            <PageNotFound />
           </Route>
         </Switch>
         </main>

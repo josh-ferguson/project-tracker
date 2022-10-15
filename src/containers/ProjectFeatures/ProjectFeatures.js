@@ -22,8 +22,7 @@ export const ProjectFeatures = ({projects, editInfo, projectCompleted, removePro
             setDescription(project.description);
             setIsCompleted(projects[projects.findIndex(project => project.projectName === projectNameParams)].completed);
         } catch (error) {
-            history.push("/pageNotFound")
-            // ADD page not found
+            history.push("/pageNotFound");
         }
     }, [project, projects, projectNameParams])
 

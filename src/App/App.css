@@ -42,3 +42,11 @@ nav .logo:visited {
 nav .logo:hover {
   color: #2986e3;
 }
+
+.pageNotFound{
+  text-align: center;
+}
+
+.pageNotFound h2{
+  font-size: 2rem;
+}
