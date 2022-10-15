@@ -53,9 +53,10 @@ export const ProjectFeatures = ({projects, editInfo, projectCompleted, removePro
     }
 
     const handleRemoveClick = () => {
-        removeProject(projectName);
-        history.push("/allProjects")
-        // ADD confirmation Modal
+        if (window.confirm("Are you sure you want to delete the project?") === true) {
+            removeProject(projectName);
+            history.push("/allProjects")
+        }
     }
     
     return (

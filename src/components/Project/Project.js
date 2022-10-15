@@ -10,7 +10,9 @@ export const Project = ({value, removeProject}) => {
     console.log(valueArray);
 
     const handleRemoveClick = () => {
-        removeProject(valueArray[0]);
+        if (window.confirm("Are you sure you want to delete the project?") === true) {
+            removeProject(valueArray[0]);
+        }
     }
 
     return (
