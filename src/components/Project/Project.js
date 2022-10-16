@@ -30,7 +30,7 @@ export const Project = ({value, removeProject}) => {
                             </p>
                             </NavLink>
                         );
-                    } else {
+                    } else if(index === 1) {
                         return (
                             <p className="project-description" key={index}>
                                 {val}

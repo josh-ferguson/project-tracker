@@ -70,6 +70,18 @@ function App() {
 
   }
 
+  const addFeature = (projectName, feature) => {
+    setProjects(current =>
+      current.map(obj => {
+        if (obj.projectName === projectName) {
+          obj.features.push(feature);
+        } 
+        console.log(projects)
+        return obj;
+      }),
+    );
+  }
+
   return (
     <Router>
       <div className="App">
@@ -101,6 +113,7 @@ function App() {
               editInfo={editInfo}
               projectCompleted={projectCompleted}
               removeProject={removeProject}
+              addFeature={addFeature}
             />
           </Route>
           <Route path={"/pageNotFound"}>

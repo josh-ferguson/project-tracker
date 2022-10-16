@@ -1,10 +1,12 @@
 import React, {useState, useEffect} from "react";
 import { useParams, useHistory } from 'react-router-dom';
+
+import { AddFeatureForm } from "../../components/AddFeatureForm/AddFeatureForm";
 import { EditModal } from "../../components/EditModal/EditModal";
 import { ProjectInfo } from "../../components/ProjectInfo/ProjectInfo";
 
 
-export const ProjectFeatures = ({projects, editInfo, projectCompleted, removeProject}) => {
+export const ProjectFeatures = ({projects, editInfo, projectCompleted, removeProject, addFeature}) => {
     const { projectNameParams } = useParams();
     const history = useHistory();
 
@@ -13,7 +15,8 @@ export const ProjectFeatures = ({projects, editInfo, projectCompleted, removePro
     const [modalActive, setModalActive] = useState(false);
     const [projectName, setProjectName] = useState(project.projectName);
     const [description, setDescription] = useState(project.description);
-    const [isCompleted, setIsCompleted] = useState("")
+    const [isCompleted, setIsCompleted] = useState("");
+    const [currentFeature, setCurrentFeature] = useState("")
 
     useEffect(() => {
         try {
@@ -45,7 +48,7 @@ export const ProjectFeatures = ({projects, editInfo, projectCompleted, removePro
         let newPath = `/projectFeatures/${projectName}`
         history.push(newPath);
         setModalActive(false);
-    }
+    } 
 
     const handleComplete = () => {
         projectCompleted(projectName);
@@ -58,6 +61,16 @@ export const ProjectFeatures = ({projects, editInfo, projectCompleted, removePro
             history.push("/allProjects")
         }
     }
+
+    const handleFeatureChange = (e) => {
+        setCurrentFeature(e.target.value)
+    }
+
+    const handleAddFeatureSubmit = (e) => {
+        e.preventDefault();
+        addFeature(projectName, currentFeature);
+        setCurrentFeature("");
+    } 
     
     return (
         <div>
@@ -77,6 +90,11 @@ export const ProjectFeatures = ({projects, editInfo, projectCompleted, removePro
                     handleDescChange={handleDescChange}
                     handleSubmit={handleSubmit}
                 /> : null }
+                <AddFeatureForm 
+                    handleFeatureChange={handleFeatureChange}
+                    handleAddFeatureSubmit={handleAddFeatureSubmit}
+                    currentFeature={currentFeature}
+                />
             </section>
         </div>
     )
