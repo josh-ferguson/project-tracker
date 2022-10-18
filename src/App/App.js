@@ -75,8 +75,7 @@ function App() {
       current.map(obj => {
         if (obj.projectName === projectName) {
           obj.features.push(feature);
-        } 
-        console.log(projects)
+        }
         return obj;
       }),
     );

@@ -2,6 +2,7 @@ import React, {useState, useEffect} from "react";
 import { useParams, useHistory } from 'react-router-dom';
 
 import { AddFeatureForm } from "../../components/AddFeatureForm/AddFeatureForm";
+import { DragAndDrop } from "../../components/DragAndDrop/DragAndDrop";
 import { EditModal } from "../../components/EditModal/EditModal";
 import { ProjectInfo } from "../../components/ProjectInfo/ProjectInfo";
 
@@ -68,7 +69,7 @@ export const ProjectFeatures = ({projects, editInfo, projectCompleted, removePro
 
     const handleAddFeatureSubmit = (e) => {
         e.preventDefault();
-        addFeature(projectName, currentFeature);
+        addFeature(projectName, {feature: currentFeature, progress: "Todo"});
         setCurrentFeature("");
     } 
     
@@ -95,6 +96,7 @@ export const ProjectFeatures = ({projects, editInfo, projectCompleted, removePro
                     handleAddFeatureSubmit={handleAddFeatureSubmit}
                     currentFeature={currentFeature}
                 />
+                <DragAndDrop />
             </section>
         </div>
     )
