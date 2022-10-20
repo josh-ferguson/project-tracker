@@ -7,7 +7,7 @@ import { EditModal } from "../../components/EditModal/EditModal";
 import { ProjectInfo } from "../../components/ProjectInfo/ProjectInfo";
 
 
-export const ProjectFeatures = ({projects, editInfo, projectCompleted, removeProject, addFeature}) => {
+export const ProjectFeatures = ({projects, editInfo, projectCompleted, removeProject, addFeature, changeFeatureProgress}) => {
     const { projectNameParams } = useParams();
     const history = useHistory();
 
@@ -16,6 +16,7 @@ export const ProjectFeatures = ({projects, editInfo, projectCompleted, removePro
     const [modalActive, setModalActive] = useState(false);
     const [projectName, setProjectName] = useState(project.projectName);
     const [description, setDescription] = useState(project.description);
+    const [features, setFeatures] = useState(project.features)
     const [isCompleted, setIsCompleted] = useState("");
     const [currentFeature, setCurrentFeature] = useState("")
 
@@ -24,6 +25,7 @@ export const ProjectFeatures = ({projects, editInfo, projectCompleted, removePro
             setProject(projects[projects.findIndex(project => project.projectName === projectNameParams)]);
             setProjectName(project.projectName);
             setDescription(project.description);
+            setFeatures(project.features);
             setIsCompleted(projects[projects.findIndex(project => project.projectName === projectNameParams)].completed);
         } catch (error) {
             history.push("/pageNotFound");
@@ -71,6 +73,7 @@ export const ProjectFeatures = ({projects, editInfo, projectCompleted, removePro
         e.preventDefault();
         addFeature(projectName, {feature: currentFeature, progress: "Todo"});
         setCurrentFeature("");
+        setFeatures(features => [...features] )
     } 
     
     return (
@@ -96,7 +99,11 @@ export const ProjectFeatures = ({projects, editInfo, projectCompleted, removePro
                     handleAddFeatureSubmit={handleAddFeatureSubmit}
                     currentFeature={currentFeature}
                 />
-                <DragAndDrop />
+                <DragAndDrop 
+                    features={features}
+                    projectName={projectName}
+                    changeFeatureProgress={changeFeatureProgress}
+                />
             </section>
         </div>
     )

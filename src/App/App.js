@@ -81,6 +81,16 @@ function App() {
     );
   }
 
+  const changeFeatureProgress = (newFeaturesList, projectName) => {
+    setProjects(current =>
+      current.map(obj => {
+        if (obj.projectName === projectName) {
+          obj.features = newFeaturesList;
+        }
+        return obj;
+      }),);
+  }
+
   return (
     <Router>
       <div className="App">
@@ -113,6 +123,7 @@ function App() {
               projectCompleted={projectCompleted}
               removeProject={removeProject}
               addFeature={addFeature}
+              changeFeatureProgress={changeFeatureProgress}
             />
           </Route>
           <Route path={"/pageNotFound"}>

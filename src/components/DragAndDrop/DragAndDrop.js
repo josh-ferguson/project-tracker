@@ -1,29 +1,21 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import { v4 as uuidv4 } from 'uuid';
 
 import "./DragAndDrop.css";
 
-const itemsFromBackend = [
-    {id: uuidv4(), content: "first task"},
-    {id: uuidv4(), content: "second task"},
-    {id: uuidv4(), content: "third task"},
-    {id: uuidv4(), content: "fourth task"},
-    {id: uuidv4(), content: "fith task"},
-    {id: uuidv4(), content: "sixth task sixth task sixth task sixth task sixth task sixth task sixth task"},
-    {id: uuidv4(), content: "eith task"},
-]
+const itemsFromBackend = []
 
 const columnsFromBackend = {
-    [uuidv4()]: {
+    todo: {
         name: "Todo",
         items: itemsFromBackend
     },
-    [uuidv4()]: {
+    inProgress: {
         name: "In Progress",
         items: []
     },
-    [uuidv4()]: {
+    done: {
         name: "Done",
         items: []
     }
@@ -66,9 +58,104 @@ const onDragEnd = (result, columns, setColumns) => {
     }
   };
 
-export const DragAndDrop = () => {
-    
+export const DragAndDrop = ({features, projectName, changeFeatureProgress}) => {
+
+    const [featuresList, setFeaturesList] = useState([]);
     const [columns, setColumns] = useState(columnsFromBackend);
+
+    useEffect(() => {
+        if (features !== undefined) {
+            if (featuresList.length === 0 && features.length !== 0) {
+
+                const todoList = [];
+                const inProgressList = [];
+                const doneList = [];
+                features.map(feature => {
+                    if (feature.progress === "Todo") {
+                        todoList.push({id: uuidv4(), content: feature.feature});
+                        setFeaturesList(prevArray => [...prevArray, {feature: feature.feature, progress: 'Todo'}])
+                    } else if (feature.progress === "inProgress") {
+                        inProgressList.push({id: uuidv4(), content: feature.feature});
+                        setFeaturesList(prevArray => [...prevArray, {feature: feature.feature, progress: 'inProgress'}])
+                    } else if (feature.progress === "done") {
+                        doneList.push({id: uuidv4(), content: feature.feature});
+                        setFeaturesList(prevArray => [...prevArray, {feature: feature.feature, progress: 'done'}]);
+                    }
+                })
+                setColumns({
+                    todo: {
+                        name: "Todo",
+                        items: todoList
+                    },
+                    inProgress: {
+                        name: "In Progress",
+                        items: inProgressList
+                    },
+                    done: {
+                        name: "Done",
+                        items: doneList
+                    }
+                }) 
+            } else if (featuresList.length !== features.length) {
+                setFeaturesList([])
+
+                const todoList = [];
+                const inProgressList = [];
+                const doneList = [];
+                features.map(feature => {
+                    if (feature.progress === "Todo") {
+                        todoList.push({id: uuidv4(), content: feature.feature});
+                        setFeaturesList(prevArray => [...prevArray, {feature: feature.feature, progress: 'Todo'}])
+                    } else if (feature.progress === "inProgress") {
+                        inProgressList.push({id: uuidv4(), content: feature.feature});
+                        setFeaturesList(prevArray => [...prevArray, {feature: feature.feature, progress: 'inProgress'}])
+                    } else if (feature.progress === "done") {
+                        doneList.push({id: uuidv4(), content: feature.feature});
+                        setFeaturesList(prevArray => [...prevArray, {feature: feature.feature, progress: 'done'}]);
+                    }
+                })
+                setColumns({
+                    todo: {
+                        name: "Todo",
+                        items: todoList
+                    },
+                    inProgress: {
+                        name: "In Progress",
+                        items: inProgressList
+                    },
+                    done: {
+                        name: "Done",
+                        items: doneList
+                    }
+                }) 
+            } else {
+                setFeaturesList([])
+                features.map(feature => {
+                    if (feature.progress === "Todo") {
+                        setFeaturesList(prevArray => [...prevArray, {feature: feature.feature, progress: 'Todo'}])
+                    } else if (feature.progress === "inProgress") {
+                        setFeaturesList(prevArray => [...prevArray, {feature: feature.feature, progress: 'inProgress'}])
+                    } else if (feature.progress === "done") {
+                        setFeaturesList(prevArray => [...prevArray, {feature: feature.feature, progress: 'done'}]);
+                    }
+                })
+            }
+        }
+    }, [features]);
+
+    useEffect(() => {
+        const newList = [];
+        columns.todo.items.map(feature => {
+            newList.push({feature: feature.content, progress: "Todo"})
+        });
+        columns.inProgress.items.map(feature => {
+            newList.push({feature: feature.content, progress: "inProgress"})
+        });
+        columns.done.items.map(feature => {
+            newList.push({feature: feature.content, progress: "done"})
+        });
+        changeFeatureProgress(newList, projectName);
+    }, [columns])
 
     return (
         <div className="DragDropContainer">
