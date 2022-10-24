@@ -19,8 +19,10 @@ function App() {
 
   useEffect(() => {
     const items = JSON.parse(localStorage.getItem('projects'));
-    if (items.length > 0) {
-      setProjects(items);
+    if (items !== null) {
+      if (items.length > 0) {
+        setProjects(items);
+      }
     }
   }, []);
 
