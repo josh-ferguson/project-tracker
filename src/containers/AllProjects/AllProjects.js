@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from "react";
+import { HelpBox } from "../../components/HelpBox/HelpBox";
 
 import { ProjectList } from "../../components/ProjectList/ProjectList";
 import { ProjectsForm } from "../../components/ProjectsForm/ProjectsForm";
@@ -44,7 +45,10 @@ export const AllProjects = (props) => {
                 />
             </section>
             <section className="projectList">
-                <ProjectList projectList={projectList} removeProject={removeProject}/>
+                {projectList.length > 0 ? 
+                    <ProjectList projectList={projectList} removeProject={removeProject}/> : 
+                    <HelpBox />
+                }
             </section>
         </div>
     )
