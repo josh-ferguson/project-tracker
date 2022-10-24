@@ -50,3 +50,13 @@ nav .logo:hover {
 .pageNotFound h2{
   font-size: 2rem;
 }
+
+@media only screen and (max-width: 900px) {
+  nav li {
+    margin: 0.4rem;
+  }
+
+  nav .logo{
+    font-size: 1.7rem;
+  }
+}

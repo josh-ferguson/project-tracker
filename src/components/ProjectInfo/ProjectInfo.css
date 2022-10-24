@@ -67,3 +67,19 @@
 .projInfo .btnDelete{
     background-color: red;
 }
+
+@media only screen and (max-width: 900px) {
+    .fa-arrow-left {
+        display: none;
+    }
+
+    .projInfo{
+        width: 90%;
+        padding: 0.5rem;
+        font-size: 1rem;
+    }
+
+    .projInfo h2{
+        font-size: 1.3rem;
+    }
+}

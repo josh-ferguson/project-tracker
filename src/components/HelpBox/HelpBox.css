@@ -17,3 +17,18 @@
     text-align: justify;
     font-size: 1.1rem;
 }
+
+@media only screen and (max-width: 900px) {
+    .helpBox{
+        width: 90%;
+        padding: 0.5rem;
+    }
+
+    .helpBox h3{
+        font-size: 1.3rem;
+    }
+
+    .helpBox p{
+        font-size: 1rem;
+    }
+}

@@ -46,3 +46,27 @@
 .projectsFormContainer input[type="submit"]:hover{
     background: hsla(210, 93%, 57%, 1);
 }
+
+
+@media only screen and (max-width: 900px) {
+    .projectsFormContainer{
+        width: 90%;
+        padding: 0.2rem 0.2rem 0.2rem;
+    }
+
+    .projectsFormContainer h2{
+        font-size: 1.7rem;
+    }
+
+    .projectsFormContainer input, .projectsFormContainer textarea{
+        margin: 0.8rem;
+        width: 95%;
+        font-size: 1rem;
+    }
+
+    .projectsFormContainer input[type="submit"]{
+        height: 40px;
+        width: 200px;
+        margin: 0;
+    }
+}

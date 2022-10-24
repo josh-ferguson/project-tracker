@@ -52,3 +52,17 @@
     box-shadow: 0 8px 16px 0 rgba(0,0,0,0.4), 0 6px 20px 0 rgba(0,0,0,0.19);
     transition: 0.5s;
 }
+
+@media only screen and (max-width: 900px) {
+    .editModalContainer{
+        width: 90%;
+    }
+
+    .editModalContainer input{
+        font-size: 1rem;
+    }
+
+    .editModalContainer h2{
+        font-size: 1.2rem;
+    }
+}

@@ -26,3 +26,18 @@
     border-bottom-right-radius: 1rem;
     cursor: pointer;
 }
+
+@media only screen and (max-width: 900px) {
+    .addFeatureFormContainer{
+        margin-left: 2%;
+        padding: 1rem;
+    }
+
+    .addFeatureFormContainer input[type=text]{
+        width: 70%;
+    }
+
+    .addFeatureFormContainer input{
+        font-size: 1rem;
+    }
+}

@@ -22,3 +22,21 @@
     min-height: 50px;
     color: white;
 }
+
+@media only screen and (max-width: 900px) {
+
+    .columnsContainer h2{
+        font-size: 1.1rem;
+    }
+
+    .columnSelector{
+        padding: 4px;
+        width: 25vw;
+        font-size: 1rem;
+        min-height: 300px;
+    }
+
+    .featureBox{
+        padding: 0.4rem;
+    }
+}
